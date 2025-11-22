@@ -8,7 +8,7 @@
 
     <body>
         <div style="display: flex; justify-content: center; margin-top: 48px;">
-            <img src="logo.png" width="18%" id="logo">
+            <img src="logo.png" width="18%" id="logo" tabindex="0" role="button" aria-label="Toggle fullscreen">
         </div>
         <div id="main">
             <h1 id="clock">00:00:00</h1>
@@ -20,6 +20,44 @@
             var datetime = String(currentdate.getHours()).padStart(2, "0") + ":" + String(currentdate.getMinutes()).padStart(2, "0") + ":" + String(currentdate.getSeconds()).padStart(2, "0");
             document.getElementById('clock').innerHTML = datetime;
         }, 1000);
+
+        function toggleFullScreen() {
+            var doc = window.document;
+            var docEl = doc.documentElement;
+
+            var isFull = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;
+
+            if (!isFull) {
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen();
+                } else if (docEl.webkitRequestFullscreen) {
+                    docEl.webkitRequestFullscreen();
+                } else if (docEl.mozRequestFullScreen) {
+                    docEl.mozRequestFullScreen();
+                } else if (docEl.msRequestFullscreen) {
+                    docEl.msRequestFullscreen();
+                }
+            } else {
+                if (doc.exitFullscreen) {
+                    doc.exitFullscreen();
+                } else if (doc.webkitExitFullscreen) {
+                    doc.webkitExitFullscreen();
+                } else if (doc.mozCancelFullScreen) {
+                    doc.mozCancelFullScreen();
+                } else if (doc.msExitFullscreen) {
+                    doc.msExitFullscreen();
+                }
+            }
+        }
+
+        var logo = document.getElementById('logo');
+        if (logo) { logo.addEventListener('click', toggleFullScreen); }
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'f') {
+                e.preventDefault();
+                toggleFullScreen();
+            }
+        });
     </script>
 
 </html>

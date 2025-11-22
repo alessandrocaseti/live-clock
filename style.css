@@ -43,4 +43,6 @@ body
 #logo
 {
     cursor: pointer;
+    z-index: 1;
+    outline: none;
 }
