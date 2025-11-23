@@ -34,7 +34,8 @@ body
 {
     font-family: Roboto Mono;
     font-style: normal;
-    font-size: 350px;
+    white-space: nowrap;
+    font-size: clamp(48px, calc(80vw / 4), 350px);
     color: white;
     text-align: center;
     align-items: center;
@@ -45,4 +46,11 @@ body
     cursor: pointer;
     z-index: 1;
     outline: none;
+}
+
+.logoContainer
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
 }
