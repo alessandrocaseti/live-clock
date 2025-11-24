@@ -46,6 +46,7 @@ body
     cursor: pointer;
     z-index: 1;
     outline: none;
+    -webkit-user-drag: none;
 }
 
 .logoContainer
