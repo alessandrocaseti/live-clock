@@ -62,6 +62,26 @@
                 toggleFullScreen();
             }
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let idleMouseTimer;
+            let forceMouseHide = false;
+
+            document.body.style.cursor = "none";
+
+            document.body.addEventListener("mousemove", () => {
+                if (forceMouseHide) { return; }
+
+                document.body.style.cursor = "";
+                clearTimeout(idleMouseTimer);
+
+                idleMouseTimer = setTimeout(() => {
+                    document.body.style.cursor = "none";
+                    forceMouseHide = true;
+                    setTimeout(() => { forceMouseHide = false; }, 200);
+                }, 10000);
+            });
+        });
     </script>
 
 </html>
